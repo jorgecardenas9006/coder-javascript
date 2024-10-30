@@ -1,7 +1,5 @@
 //importar data.js
-import { data } from './data.js';
-//importar usuarios.js
-import Usuarios from './usuarios.js'; 
+const data = require('./data.js');
 
 class Cuentas {
     constructor() {
@@ -17,6 +15,22 @@ class Cuentas {
         }
     
         getCuenta(cuenta) {
-            return this._cuentas.find(u => u.usuario === cuenta);
+            return this._data.find(u => u.usuario === cuenta);
+        }
+        consultarSaldo(cuenta) {
+            let u = this.getCuenta(cuenta);
+            if (u) {
+                return u.saldoCuentaAhorros;
+            }
+            return null;
+        }
+        montoRetirar(cuenta, monto) {
+            let u = this.getCuenta(cuenta);
+            if (u) {
+                u.saldoCuentaAhorros -= monto;
+                return u.saldoCuentaAhorros;
+            }
+            return null;
         }
 }
+module.exports = Cuentas;

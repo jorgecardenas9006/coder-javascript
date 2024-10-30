@@ -1,5 +1,3 @@
-const exp = require("constants");
-
 const cuentas = [
     {
         nombre: "Juan Pérez",

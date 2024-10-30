@@ -1,5 +1,6 @@
 // Importar archivo de datos (asegúrate de que data.js exporte un arreglo de usuarios)
 const data = require('./data.js');
+const prompt = require('prompt-sync')();
 
 class Usuarios {
     constructor() {
@@ -10,25 +11,22 @@ class Usuarios {
         return this._usuarios.find(u => u.usuario === usuario);
     }
 
-    login(usuario, senha) {
+    login(usuario, password) {
         let u = this.getUsuario(usuario);
-        if (u && u.senha === senha) {
+        if (u && u.password === password) {
             return true;
         }
         return false;
     }
 
-    solicitarDatos() {
-        rl.question('Por favor digite su usuario: ', (usuario) => {
-            rl.question('Por favor digite su contraseña: ', (senha) => {
-                if (this.login(usuario, senha)) {
-                    console.log('Login exitoso');
-                } else {
-                    console.log('Usuario o contraseña incorrectos');
-                }
-                rl.close();
-            });
-        });
+    solicitarUsuario() {
+        let usuario = prompt('Por favor digite su usuario: ');
+        return usuario;
+    }
+
+    solicitarPassword() {
+        let password = prompt('Por favor digite su contraseña: ');
+        return password;
     }
 }
 
